@@ -1,7 +1,10 @@
 //variaveis
+// require vai requisitar
 const express = require("express");
+//importar
 const bodyparser = require("body-parser");
 
+// app
 const app = express();
 
 app.use(bodyParser());
@@ -38,11 +41,15 @@ app.post ("/cliente", (request, response) => {
     response.send ("teste");
 })
 
+
+// porta que vai rodar
 app.listen (8080, () => {
     console.log("Servidor iniciado na porta 8080");
 })
 
-// nodemon node index.js
+// ele atualiza automaticamente 
+//nodemon node index.js
 // npm start: forma de visualizar o servidor
 /*para instalar um pacote
+// - d cria uma propriedade dev (desenvolvimento)
 npm install -d nodemon */
