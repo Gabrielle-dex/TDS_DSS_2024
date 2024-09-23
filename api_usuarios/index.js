@@ -1,22 +1,28 @@
-/*Validar para não repetir o Id nem o e-mail */
 const express = require('express');
 const bodyParser = require('body-parser');
 
-
+//inicializar uma lista vazia para cliente
+let clientesLista = [];
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//.filter
-// request reponse padrão call back
-//cadastrar uma rota
-//indentificar BaseURL = http://localhost:8080/ essa ultima barra é o motivo de por / no começo
-// push só existe dentro de uma lista
-// const global
-const clientes = []; 
-// response/responde é o retorno
-// request usuario enviou os dados
+const clientes = [{
+    ID: x,
+    nome:"Gabi"
+}]; 
+
+const validadorID = indetificador.filter(validaID);
+
+function validaID(){
+
+}
+
+function soma(){
+    for (x = int; x <= ultimocadastro; x++)
+        return;
+}
 app.post("/Cadastro", (request, response) => {
 
     clientes.push(request.body);

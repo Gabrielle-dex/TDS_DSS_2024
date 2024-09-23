@@ -28,7 +28,8 @@ app.get("/clientes", (request, response) => {
     // objeto {}  
     //lista []
     const clientes = [
-        {
+        {   
+            ID: 1,
             nome: "Gabi",
             idade: 24
         },
