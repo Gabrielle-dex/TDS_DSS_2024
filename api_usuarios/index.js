@@ -60,7 +60,11 @@ app.get("/Clientes/: id([0-9]+)", (request, response) => {
 
 app.delete ("cliente/: id([0-9]+)", (request, response) => {
     const { id } = request.params;
-   return response.send(request.params.id);
+    const index = clientes.findIndex(item  => item.id == id);
+    if (index === -1){
+        return response.status(400).send("Código do cliente não existe");
+    }
+    clientes.splice (index, 1);
 })
 
 app.atualizar ("cliente/: id([0-9]+)", (request, response) => {
@@ -76,10 +80,18 @@ app.post("/Cadastro", (request, response) => {
 app.get("/Consulta", (request, response) => {
     response.send(clientes)
 })
+app.put("/Atualizar", (request, response) => {
+    const {id, nome, email, senha} = request.body;
 
-app.get("/clientes")
-clientes.filter()
-
+    clientes.filter(item => {
+        if(item.id === id){
+            item.nome = nome;
+            item.email = email;
+            item.senha = senha;
+            return response.send("Cliente atualizado com sucecesso!")
+        }
+    })
+})
 
 app.listen(8080, (err) =>{
     console.log("Servidor iniciado na porta 8080");
