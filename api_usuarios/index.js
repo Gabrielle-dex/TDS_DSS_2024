@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const clientes = [{
-    ID: x,
+    ID: 1,
     nome:"Gabi"
 }]; 
 
@@ -50,10 +50,20 @@ app.get("/Clientes/: id([0-9]+)", (request, response) => {
     const { id } = request.params;
 
     const cliente = cliente.filter (item => item.id == id)
+ 
+
+    if(!cliente.length){
+        return response.status(400).send(`O ID ${id} não existe!`);
+    }
     return response.send(cliente);
 })
 
 app.delete ("cliente/: id([0-9]+)", (request, response) => {
+    const { id } = request.params;
+   return response.send(request.params.id);
+})
+
+app.atualizar ("cliente/: id([0-9]+)", (request, response) => {
    return response.send(request.params.id);
 })
 app.post("/Cadastro", (request, response) => {

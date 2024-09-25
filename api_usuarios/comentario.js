@@ -28,3 +28,5 @@ function soma(){
 
   /*no base environment :  "baseURL": "http://localhost:8080"
   no link colocar: ctrl + espaço = coloca toda conteudo */
+
+  //.map é tipo um foreach, só que retorna o proprio
