@@ -1,26 +1,79 @@
 const conn = require("../mysql-connection");
 
 module.exports = ({
-    cadastro: (req, res) => { },
-    consultar: (req, res) => {
-        conn.raw("SELECT * FORM CLEINTES").then((data) => {
-            res.status(200).send(data[0]);
-        }).catch((erro) => {
-            console.log(erro);
-            res.status(500).send("Erro ao consultar os clientes!");
-        });
-    },
-    atualizar: (req, res) => { 
-        const { id, nome, telefone, status } = req.body;
-        conn.raw(`UPDATE CLIENTE SET nome= '${nome}',
-            telefone='${telefone}',  status=${status} WHERE id=${id}`).then((data) => {
-                console.log(data);
-                res.status(200).send({msg:"Atualizado com sucesso!"})
-            }).catch((erro) => {
-                console.log(erro);
-                res.status(500).send({msg: "Erro ao atualizar o cliente!"});
-            })
+    cadastro: (req, res) =>{
+        const {nome, telefone} = req.body;
+        
+        var comando = ``;
+
+        if(!telefone){
+            comando = `INSERT INTO CLIENTE(NOME, TELEFONE) VALUES ('${nome},'null)`
+        }else{
+            comando = `INSERT INTO CLIENTE(NOME, TELEFONE) VALUES ('${nome}, '${telefone}')`
+        }
+
+        conn.raw(comando)
+        // se tudo der certo
+        .then((data) => {
+            res.status(200).send ({msg: "Cliente cadastrado com sucesso!"});
+        })
+        // se tudo der errado
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send("Erro ao cadastrar um cliente!");
+        })
     },
 
-    deletar: (req, res) => { }
+    consultar: (req, res) =>{
+        conn.raw("SELECT  * FROM CLIENTE".then ((data) =>{
+            res.status(200).send (data[0]);
+        }).catch((erro) =>{
+            console.log(erro);
+            res.status(500).send("Erro ao consultar os clientes!");
+        })
+
+    )},
+    atualizar: (req, res) =>{
+        const {id, nome, telefone, status } = req.body;
+        conn.raw(`UPDATE CLIENTE SET nome='${nome}',
+            telefone='${telefone}', 
+            status=${status} WHERE id = ${id}`)
+            .then((data) => {
+                console.log(data);
+                res.status(200).send({ msg: "Cliente atualizado com sucesso!" })
+            }).catch((error) => {
+                console.log(error);
+                res.status(500).send({ msg: "Erro ao atualizar o cliente!" });
+            });
+    },
+    deletar: (req, res)=> {
+        const { id } = req.params;
+
+        conn.raw(`DELETE FROM CLIENTE WHERE ID = ${id}`).then((data) => {
+            console.log(data[0].affectedRows);
+
+            if (data[0].affectedRows == 0) {
+                return res.status(404).send({ msg: "Nenhum cliente encontrado com esse código!" });
+            } else {
+                return res.status(200).send({ msg: "Cliente deletado com sucesso!" });
+            }
+
+        }).catch((error) => {
+            console.log(error);
+            return res.status(500).send({ msg: "Erro ao deletar o cliente!" });
+        });
+
+    },
+    buscarporID: (req, res) =>{
+        const {id} = req.params;
+
+        conn.raw (`SELECT * FROM CLIENTE WHERE ID =${id}`)
+        .then((data) =>{
+            console.log(data);
+            res.status(200).send(data[0]);
+        }) .catch((error) =>{
+            console.log(error);
+            res.status(500).send("Erro ao buscar o cliente");
+        })
+    }
 })
