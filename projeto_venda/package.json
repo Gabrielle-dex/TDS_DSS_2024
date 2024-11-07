@@ -12,7 +12,8 @@
   "description": "",
   "dependencies": {
     "body": "^5.1.0",
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
