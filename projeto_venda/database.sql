@@ -1,5 +1,5 @@
 
-/* Banco de dados dll
+/*Banco de dados dll */
     CREATE DATABASE projeto_venda;
 
     CREATE TABLE cliente(
@@ -16,7 +16,12 @@
 
     );
 
-         CREATE TABLE   anotação do problema VARCHAR(255),
-        imagem ,
+    CREATE TABLE   anotação do problema (
+    descricao  VARCHAR(255),
+    /*imagem , */
+    );
+    /*CRUD */
 
-     */
+INSERT INTO projeto_venda.cliente(nome, email, telefone) VALUES("Vitor", "vitor@gmail.com" ,"46995575848");
+    SELECT FROM * cliente;
+    
