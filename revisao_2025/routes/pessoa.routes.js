@@ -1,6 +1,6 @@
 const routes = express.routes();
 const express = require ("express");
-const PessoaController = require("../pessoa.controllers.js");
+const PessoaController = require("../controllers/pessoa.controllers");
 
 //CRUD
 routes.post("/", pessoaController.inserir);
