@@ -7,12 +7,16 @@ module.exports = ({
          //then e catch
     },
     consultar: async (request,response) =>{
-      try{
-        //filtro .where("id, valor desejado")
-        const data = await conn.(pessoas);
-          reponse.status(200).send(data[0]);
-            }catch(error){
-                response.status(500).send ({"msg: Erro ao carregar lista"});
-            }
+        try{
+            //filtro .where("id, valor desejado")
+            // const data = await conn(pessoas);
+            //   reponse.status(200).send(data[0]);
+            //     }catch(error){
+            //         response.status(500).send ({"msg: Erro ao carregar lista"});
+            //     }
+
+        } catch (error) {
+            
         }
+    }
 });
