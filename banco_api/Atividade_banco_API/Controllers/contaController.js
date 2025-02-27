@@ -50,4 +50,3 @@ exports.deleteConta = async (req, res) => {
         res.status(500).json({ message: "Erro ao deletar a conta", error });
     }
 };
-
