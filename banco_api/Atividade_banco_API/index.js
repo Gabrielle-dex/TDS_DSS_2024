@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require("body-parser"); 
-const indexRoutes = require("./routes/indexRoutes");  
+const indexRoutes = require("./Routes/indexRoutes");  
 
 const app = express();
 app.use(indexRoutes);
