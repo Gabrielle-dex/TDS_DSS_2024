@@ -1,3 +1,3 @@
 const conn = require('../db-conn');
 
-/*export */
+/*export.get */
